@@ -1,0 +1,52 @@
+---
+# defaults file for docker-nginx
+
+docker_edition: "ce"
+docker__channel: "stable"
+docker_version: "latest"
+docker_package: "docker-{{ docker_edition }}"
+docker_package_state: "present"
+
+docker_apt_ignore_key_error: true
+docker_apt_key_id: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
+docker_apt_key_server: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
+docker_apt_repository: >
+  deb [arch=amd64]
+  https://download.docker.com/linux/{{ ansible_distribution|lower }}
+  {{ ansible_distribution_release }} {{ docker__channel }}
+
+
+docker_package_dependencies:
+  - "apt-transport-https"
+  - "ca-certificates"
+  - "curl"
+  - "gnupg2"
+  - "python3.6"
+  - "python3-pip"
+  - "software-properties-common"
+
+pip_dependencies:
+  # - pip-3.3
+  - bottle
+  - setuptools
+  - urllib3
+  - pyopenssl
+  - ndg-httpsclient
+  - pyasn1
+  - docker-py
+
+
+docker_pip_dependencies:
+  - "python-setuptools"
+  # - "python{{ '3' if ansible_python.executable[-1] == '3' else '' }}-pip"
+  - "python3-pip"
+  # - "python3.7"
+
+
+# Service options.
+docker_service_state: started
+docker_service_enabled: true
+docker_restart_handler_state: restarted
+
+docker_image: "library/alpine:latest"
+docker_container_name: "docker-nginx"
