@@ -1,0 +1,24 @@
+---
+  # - name: Create the container
+  #   docker_container:
+  #     image: '{{ docker_image }}'
+  #     name: '{{ docker_container_name }}'
+  #     command: sleep infinity
+  #     volumes: '{{ nginx_exposed_volumes }}'
+  #     ports: '{{ nginx_published_ports }}'
+  #     exposed_ports: '{{ nginx_exposed_ports }}'
+  #     state: 'started'
+  #     restart_policy: 'always'
+  #     log_driver: 'syslog'
+  #     log_options:
+  #       tag: "{{ nginx_container_name }}"
+    # when: container_engine == 'docker'
+
+  - name: Build Docker images from Dockerfiles
+    docker_image:
+      name: "{{ item.name }}"
+      tag: "{{ item.tag }}"
+      path: "/vagrant/Provisioning/{{ item.directory }}"
+      state: build
+    with_items:
+      - { name: www, tag: "nginx", directory: www }

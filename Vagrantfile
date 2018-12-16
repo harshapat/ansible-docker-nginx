@@ -8,12 +8,13 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "ubuntu/xenial64"
+  # config.vm.box = "geerlingguy/ubuntu1604"
+  config.vm.hostname = "ansible-docker-nginx.test"
 
   config.vm.define "ansible_assignment" do |ansible_assignment|
     ansible_assignment.vm.network :private_network, ip: "192.168.61.10"
-    #ansible_assignment.vm.network "forwarded_port", guest: 80, host: 8080
-    #ansible_assignment.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-    #ansible_assignment.vm.network "private_network", ip: "192.168.33.10"
+    # ansible_assignment.vm.network "forwarded_port", guest: 80, host: 8080
+    # ansible_assignment.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
   end
 
   
@@ -33,13 +34,14 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+    vb.cpus = 2
+  # Customize the amount of memory on the VM:
+    vb.memory = "1024"
+  end
   #
   # View the documentation for the provider you are using for more
   # information on available options.
