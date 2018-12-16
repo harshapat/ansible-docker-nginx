@@ -7,7 +7,7 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
- config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.define "ansible_assignment" do |ansible_assignment|
     ansible_assignment.vm.network :private_network, ip: "192.168.61.10"
