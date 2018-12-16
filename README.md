@@ -1,6 +1,6 @@
 # ansible-docker-nginx
 ### ansible-docker-nginx test
-	This project run
+	This project runs vagrant, which provision nginx in a docker container.
 
 
 ## Dependencies
