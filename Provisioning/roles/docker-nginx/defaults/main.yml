@@ -39,8 +39,8 @@ docker_service_state: started
 docker_service_enabled: true
 docker_restart_handler_state: restarted
 
-docker_image: "library/alpine:latest"
-docker_container_name: "docker-nginx"
+docker_image: "www:nginx"
+docker_container_name: "www"
 
 nginx_base_directory: '/tmp/nginx'
 nginx_container_name: 'nginx'
