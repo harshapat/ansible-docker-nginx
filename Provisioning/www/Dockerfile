@@ -3,15 +3,11 @@ FROM nginx:stable-alpine
 LABEL maintainer="Harsha A Patankar"
 
 
-# Update the repository
-RUN apt-get update
-
-RUN apk --update add --no-cache python3 py3-pip zip tar make bash bash-completion wget curl jq git openssl openssh-client \
+RUN apk --update add --no-cache python3 py3-pip zip tar make bash bash-completion wget curl jq git openssl openssh-client nginx \
     && rm -rf /var/lib/apt/lists/*
 RUN apk add --no-cache ca-certificates && update-ca-certificates
 RUN pip3 install --upgrade pip
 
-RUN apt-get install -y nginx
 
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
